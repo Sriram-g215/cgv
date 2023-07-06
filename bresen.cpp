@@ -1,5 +1,3 @@
-/*Implement Bresenham’s line drawing algorithm for all types
-of slope.*/
 #include<stdio.h>
 #include<GL/glut.h>
 #include<math.h>
@@ -21,7 +19,6 @@ void setPixel(int x, int y)
 void Bresenhamline()
 {
     int p, x, y;
-    //to draw line from right to left
     if (xx > xend)
     {
         x = xend;
@@ -29,18 +26,18 @@ void Bresenhamline()
         xend = xx;
         yend = yy;
     }
-    else {//to draw line from left to right
+    else {
         x = xx;
         y = yy;
     }
     int dx = abs(xend - x), dy = abs(yend - y);
     int twody = 2 * dy, twodyMinustwodx = 2 * (dy - dx);
     int twodx = 2 * dx, twodxMinustwody = 2 * (dx - dy);
-    glColor3f(1, 0, 0); // Set color to red.
-    glPointSize(2); //Set point size to 3
+    glColor3f(1, 0, 0); 
+    glPointSize(2); 
     if (dx > dy)
     {
-        //For slope m<1
+        
         p = 2 * dy - dx;
         setPixel(x, y);
         while (x < xend)
@@ -77,27 +74,26 @@ void Bresenhamline()
 }
 void display()
 {
-    glClearColor(1, 1, 1, 1); //Specifies a background RGB color for a display window.
-    glClear(GL_COLOR_BUFFER_BIT);// Clear display window.
+    glClearColor(1, 1, 1, 1); 
+    glClear(GL_COLOR_BUFFER_BIT);
     glViewport(300, 300, 100, 100);
     Bresenhamline();
-    glFlush(); // Process all OpenGL routines as quickly as possible.
+    glFlush(); 
 }
 int main(int argc,char *argv[])
 {
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_RGB | GLUT_SINGLE);// Set display mode.
-    glutInitWindowPosition(100, 100); // Set top - left display - window position.
-    glutInitWindowSize(500, 500); // Set display - window width and height.
-    glutCreateWindow("Bresenham's Line Drawing  Algorthm");// Create display window.
+    glutInitDisplayMode(GLUT_RGB | GLUT_SINGLE);
+    glutInitWindowPosition(100, 100); 
+    glutInitWindowSize(500, 500);
+    glutCreateWindow("Bresenham's Line Drawing  Algorthm");
      myinit();
-    // Execute initialization procedure.
+    
     printf("Enter co-ordinates of first point: ");
     xx = 20; yy = 30;
     printf("Enter co-ordinates of second point: ");
     xend = 80; yend = 90;
     glutDisplayFunc(display);
-    //Invokes a function to create a picture within the current display window.
     glutMainLoop();
-    //Executes the computer-graphics program.
+   
 }
